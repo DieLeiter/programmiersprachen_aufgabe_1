@@ -63,6 +63,11 @@ TEST_CASE("describe_gcd", "[gcd]") {
     REQUIRE(gcd(0, 7) == 1);
 }
 
+TEST_CASE("describe_sum_multiple", "[sum_multiple]") {
+    REQUIRE(sum_multiples() == 10);
+}
+
+
 int main(int argc, char* argv[])
 {
   return Catch::Session().run(argc, argv);
