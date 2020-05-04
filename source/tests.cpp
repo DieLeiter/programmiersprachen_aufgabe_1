@@ -68,6 +68,15 @@ float cylinder_volume(float r, float h) {
     return 0.0f;
 }
 
+float cylinder_surface(float r, float h) {
+    if (r > 0 && h > 0) {
+        float surface = 2 * M_PI * r * (r + h);
+        return surface;
+    }
+
+    return 0;
+}
+
 TEST_CASE("describe_checksum", "[checksum]") {
     REQUIRE(checksum(121618) == 19);
     REQUIRE(checksum(123) == 6);
@@ -97,6 +106,12 @@ TEST_CASE("describe_cylinder_volume", "[cylinder_volume]") {
     REQUIRE(cylinder_volume(2.0f, 4.0f) == Approx(50.265f));
     REQUIRE(cylinder_volume(0.0f, 10.0f) == Approx(0.0f));
     REQUIRE(cylinder_volume(12.3f, -3.14f) == Approx(0.0f));
+}
+
+TEST_CASE("describe_cylinder_surface") {
+    REQUIRE(cylinder_surface(2.0f, 4.0f) == Approx(75.398f));
+    REQUIRE(cylinder_surface(6.13f, 0.0f) == Approx(0.0f));
+    REQUIRE(cylinder_surface(-13.4f, 0.7f) == Approx(0.0f));
 }
 
 
