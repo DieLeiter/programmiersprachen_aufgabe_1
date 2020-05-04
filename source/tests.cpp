@@ -1,4 +1,6 @@
 #define CATCH_CONFIG_RUNNER
+#define _USE_MATH_DEFINES
+
 #include <catch.hpp>
 #include <cmath>
 
@@ -57,6 +59,15 @@ float fract(float a) {
     return a - (int)a;
 }
 
+float cylinder_volume(float r, float h) {
+    if (r > 0 && h > 0) {
+        float volume = M_PI * pow(r, 2.0f) * h;
+        return volume;
+    }
+
+    return 0.0f;
+}
+
 TEST_CASE("describe_checksum", "[checksum]") {
     REQUIRE(checksum(121618) == 19);
     REQUIRE(checksum(123) == 6);
@@ -80,6 +91,12 @@ TEST_CASE("describe_fract", "[fract]") {
     REQUIRE(fract(0.000f) == Approx(0.000f));
     REQUIRE(fract(5.0f) == Approx(0.000f));
     REQUIRE(fract(-6.475f) == Approx(0.475f));
+}
+
+TEST_CASE("describe_cylinder_volume", "[cylinder_volume]") {
+    REQUIRE(cylinder_volume(2.0f, 4.0f) == Approx(50.265f));
+    REQUIRE(cylinder_volume(0.0f, 10.0f) == Approx(0.0f));
+    REQUIRE(cylinder_volume(12.3f, -3.14f) == Approx(0.0f));
 }
 
 
