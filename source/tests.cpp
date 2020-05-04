@@ -86,6 +86,16 @@ long factorial(int n) {
     }
 }
 
+bool is_prime(int a) {
+    for (int i = 2; i < a; i++) {
+        if ((a % i) == 0) {
+            return false;
+            break;
+        }
+    }
+    return true;
+}
+
 TEST_CASE("describe_checksum", "[checksum]") {
     REQUIRE(checksum(121618) == 19);
     REQUIRE(checksum(123) == 6);
@@ -127,6 +137,11 @@ TEST_CASE("describe_factorial", "[factorial]") {
     REQUIRE(factorial(0) == 1);
     REQUIRE(factorial(5) == 120);
     REQUIRE(factorial(11) == 39916800);
+}
+
+TEST_CASE("describe_is_prime", "[is_prime]") {
+    REQUIRE(is_prime(13) == true);
+    REQUIRE(is_prime(9) == false);
 }
 
 
