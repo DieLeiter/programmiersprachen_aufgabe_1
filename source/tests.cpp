@@ -49,6 +49,14 @@ int sum_multiples() {
     return sum;
 }
 
+float fract(float a) {
+    if (a < 0) {
+        a *= -1;
+    }
+
+    return a - (int)a;
+}
+
 TEST_CASE("describe_checksum", "[checksum]") {
     REQUIRE(checksum(121618) == 19);
     REQUIRE(checksum(123) == 6);
@@ -63,8 +71,15 @@ TEST_CASE("describe_gcd", "[gcd]") {
     REQUIRE(gcd(0, 7) == 1);
 }
 
-TEST_CASE("describe_sum_multiple", "[sum_multiple]") {
+/*TEST_CASE("describe_sum_multiple", "[sum_multiple]") {
     REQUIRE(sum_multiples() == 10);
+}*/
+
+TEST_CASE("describe_fract", "[fract]") {
+    REQUIRE(fract(1.233f) == Approx(0.233f));
+    REQUIRE(fract(0.000f) == Approx(0.000f));
+    REQUIRE(fract(5.0f) == Approx(0.000f));
+    REQUIRE(fract(-6.475f) == Approx(0.475f));
 }
 
 
