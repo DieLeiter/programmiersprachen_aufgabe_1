@@ -1,4 +1,5 @@
 add_executable(aufgabe1_3 aufgabe1_3.cpp)
+add_executable(tests tests.cpp)
 
 #target_link_libraries(helloworld my_own_library)
 
