@@ -27,10 +27,6 @@ int gcd(int a, int b) {
 int checksum(int a) {
     int quersumme = 0;
 
-    if (a < 0) {
-        a *= -1;
-    }
-
     while (a > 0) {
         quersumme += a % 10;
         a /= 10;
@@ -100,7 +96,6 @@ TEST_CASE("describe_checksum", "[checksum]") {
     REQUIRE(checksum(121618) == 19);
     REQUIRE(checksum(123) == 6);
     REQUIRE(checksum(0) == 0);
-    REQUIRE(checksum(-123) == 6);
 }
 
 TEST_CASE("describe_gcd", "[gcd]") { 
