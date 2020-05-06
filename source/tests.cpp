@@ -5,6 +5,13 @@
 #include <cmath>
 
 int gcd(int a, int b) { 
+    if (a < 0) {
+        a *= -1;
+    }
+    if (b < 0) {
+        b *= 1;
+    }
+    
     if (a != 0 && b != 0) {
         int max = 0;
 
@@ -35,15 +42,16 @@ int checksum(int a) {
     return quersumme;
 }
 
-int sum_multiples() {
+int sum_multiples(int a, int b) {
     int sum = 0;
 
-    for (int i = 3; i <= 1000; i++) {
+    for (int i = a; i <= b; i++) {
         if (i % 3 == 0 || i % 5 == 0) {
             sum += i;
         }
     }
 
+    std::cout << sum << std::endl;
     return sum;
 }
 
@@ -103,11 +111,13 @@ TEST_CASE("describe_gcd", "[gcd]") {
     REQUIRE(gcd(9, 6) == 3);
     REQUIRE(gcd(3, 7) == 1);
     REQUIRE(gcd(0, 7) == 1);
+    REQUIRE(gcd(-2, 8) == 2);
 }
 
-/*TEST_CASE("describe_sum_multiple", "[sum_multiple]") {
-    REQUIRE(sum_multiples() == 10);
-}*/
+TEST_CASE("describe_sum_multiple", "[sum_multiple]") {
+    REQUIRE(sum_multiples(1, 1000) == 234168);
+    REQUIRE(sum_multiples(1, 10) == 33);
+}
 
 TEST_CASE("describe_fract", "[fract]") {
     REQUIRE(fract(1.233f) == Approx(0.233f));
@@ -142,5 +152,6 @@ TEST_CASE("describe_is_prime", "[is_prime]") {
 
 int main(int argc, char* argv[])
 {
+  sum_multiples(1, 1000);
   return Catch::Session().run(argc, argv);
 }
