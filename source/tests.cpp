@@ -55,7 +55,7 @@ int sum_multiples(int a) {
     int sum = 0;
 
     if (a < 1) {
-        std::cout << "Die Obergrenze muss größer als 1 sein";
+        std::cout << "Die Obergrenze muss groeßer als 1 sein";
         return -1;
     }
 
@@ -80,7 +80,7 @@ float fract(float a) {
 float cylinder_volume(float r, float h) {
     
     if (r <= 0 || h <= 0) {
-        std::cout << "Radius und Höhe müssen größer als 0 sein!";
+        std::cout << "Radius und Hoehe muessen groeßer als 0 sein!";
         return -1.0f;
     }
     else {
@@ -91,7 +91,7 @@ float cylinder_volume(float r, float h) {
 
 float cylinder_surface(float r, float h) {
     if (r <= 0 || h <= 0) {
-        std::cout << "Radius und Höhe müssen größer als 0 sein!";
+        std::cout << "Radius und Hoehe muessen groeßer als 0 sein!";
         return -1.0f;
     }
     else {
@@ -102,7 +102,7 @@ float cylinder_surface(float r, float h) {
 
 long factorial(int n) {
     if (n < 0) {
-        std::cout << "Fakultäten für Zahlen kleiner 0 sind nicht definiert.";
+        std::cout << "Fakultaeten für Zahlen kleiner 0 sind nicht definiert.";
         return -1;
     }
     if (n == 0 || n == 1) {
@@ -180,5 +180,10 @@ TEST_CASE("describe_is_prime", "[is_prime]") {
 
 int main(int argc, char* argv[])
 {
-  return Catch::Session().run(argc, argv);
+    std::cout << " Quersumme, negative Zahl: " << checksum(-123) << std::endl;
+    std::cout << " Aufsummierung, Obergrenze kleiner als 1: " << sum_multiples(-12) << std::endl;
+    std::cout << " Zylinder Volumen, negative Zahl: " << cylinder_volume(-1, 13) << std::endl;
+    std::cout << " Zylinder Oberflaeche, negative Zahl: " << cylinder_surface(-1, 13) << std::endl;
+    std::cout << " Fakultaet, negative Zahl: " << factorial(-9) << std::endl;
+    return Catch::Session().run(argc, argv);
 }
