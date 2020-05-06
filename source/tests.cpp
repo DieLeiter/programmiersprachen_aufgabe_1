@@ -5,6 +5,9 @@
 #include <cmath>
 
 int gcd(int a, int b) { 
+    int max; //maximum possible divider
+    
+    // if a or b is negative, make positive
     if (a < 0) {
         a *= -1;
     }
@@ -12,23 +15,25 @@ int gcd(int a, int b) {
         b *= 1;
     }
     
-    if (a != 0 && b != 0) {
-        int max = 0;
-
-        if (a < b) {
-            max = a;
-        }
-        else {
-            max = b;
-        }
-
-        for (int i = max; i >= 2; i--) {
+    // select greater number as maximum
+    if (a > b) {
+        max = a;
+    }
+    else {
+        max = b;
+    }
+    
+    // if a parameter is 0, maximum divider is gcd
+    if (a == 0 || b == 0) {
+        return max;
+    }
+    else {
+        for (int i = max; i >= 1; i--) {
             if (a % i == 0 && b % i == 0) {
                 return i;
             }
         }
     }
-    return 1;
 }
 
 int checksum(int a) {
@@ -42,10 +47,10 @@ int checksum(int a) {
     return quersumme;
 }
 
-int sum_multiples(int a, int b) {
+int sum_multiples(int a) {
     int sum = 0;
 
-    for (int i = a; i <= b; i++) {
+    for (int i = 1; i <= a; i++) {
         if (i % 3 == 0 || i % 5 == 0) {
             sum += i;
         }
@@ -110,13 +115,13 @@ TEST_CASE("describe_gcd", "[gcd]") {
     REQUIRE(gcd(2, 4) == 2);
     REQUIRE(gcd(9, 6) == 3);
     REQUIRE(gcd(3, 7) == 1);
-    REQUIRE(gcd(0, 7) == 1);
+    REQUIRE(gcd(0, 7) == 7);
     REQUIRE(gcd(-2, 8) == 2);
 }
 
 TEST_CASE("describe_sum_multiple", "[sum_multiple]") {
-    REQUIRE(sum_multiples(1, 1000) == 234168);
-    REQUIRE(sum_multiples(1, 10) == 33);
+    REQUIRE(sum_multiples(1000) == 234168);
+    REQUIRE(sum_multiples(10) == 33);
 }
 
 TEST_CASE("describe_fract", "[fract]") {
@@ -152,6 +157,6 @@ TEST_CASE("describe_is_prime", "[is_prime]") {
 
 int main(int argc, char* argv[])
 {
-  sum_multiples(1, 1000);
+  sum_multiples(1000);
   return Catch::Session().run(argc, argv);
 }
