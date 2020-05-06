@@ -39,6 +39,10 @@ int gcd(int a, int b) {
 int checksum(int a) {
     int quersumme = 0;
 
+    if (a < 0) {
+        std::cout << "Eine Quersumme für negative Zahlen ist nich definiert.";
+        return -1;
+    }
     while (a > 0) {
         quersumme += a % 10;
         a /= 10;
@@ -49,6 +53,11 @@ int checksum(int a) {
 
 int sum_multiples(int a) {
     int sum = 0;
+
+    if (a < 1) {
+        std::cout << "Die Obergrenze muss größer als 1 sein";
+        return -1;
+    }
 
     for (int i = 1; i <= a; i++) {
         if (i % 3 == 0 || i % 5 == 0) {
@@ -69,33 +78,45 @@ float fract(float a) {
 }
 
 float cylinder_volume(float r, float h) {
-    if (r > 0 && h > 0) {
+    
+    if (r <= 0 || h <= 0) {
+        std::cout << "Radius und Höhe müssen größer als 0 sein!";
+        return -1.0f;
+    }
+    else {
         float volume = M_PI * pow(r, 2.0f) * h;
         return volume;
     }
-
-    return 0.0f;
 }
 
 float cylinder_surface(float r, float h) {
-    if (r > 0 && h > 0) {
+    if (r <= 0 || h <= 0) {
+        std::cout << "Radius und Höhe müssen größer als 0 sein!";
+        return -1.0f;
+    }
+    else {
         float surface = 2 * M_PI * r * (r + h);
         return surface;
     }
-
-    return 0;
 }
 
 long factorial(int n) {
-    if (n > 1) {
-        return n * factorial(n - 1);
+    if (n < 0) {
+        std::cout << "Fakultäten für Zahlen kleiner 0 sind nicht definiert.";
+        return -1;
+    }
+    if (n == 0 || n == 1) {
+        return 1;
     }
     else {
-        return 1;
+        return n * factorial(n - 1);
     }
 }
 
 bool is_prime(int a) {
+    if (a < 0) {
+        a *= -1;
+    }
     for (int i = 2; i < a; i++) {
         if ((a % i) == 0) {
             return false;
@@ -133,30 +154,31 @@ TEST_CASE("describe_fract", "[fract]") {
 
 TEST_CASE("describe_cylinder_volume", "[cylinder_volume]") {
     REQUIRE(cylinder_volume(2.0f, 4.0f) == Approx(50.265f));
-    REQUIRE(cylinder_volume(0.0f, 10.0f) == Approx(0.0f));
-    REQUIRE(cylinder_volume(12.3f, -3.14f) == Approx(0.0f));
+    REQUIRE(cylinder_volume(0.0f, 10.0f) == Approx(-1.0f));
+    REQUIRE(cylinder_volume(12.3f, -3.14f) == Approx(-1.0f));
 }
 
 TEST_CASE("describe_cylinder_surface", "[cylinder_surface]") {
     REQUIRE(cylinder_surface(2.0f, 4.0f) == Approx(75.398f));
-    REQUIRE(cylinder_surface(6.13f, 0.0f) == Approx(0.0f));
-    REQUIRE(cylinder_surface(-13.4f, 0.7f) == Approx(0.0f));
+    REQUIRE(cylinder_surface(6.13f, 0.0f) == Approx(-1.0f));
+    REQUIRE(cylinder_surface(-13.4f, 0.7f) == Approx(-1.0f));
 }
 
 TEST_CASE("describe_factorial", "[factorial]") {
     REQUIRE(factorial(0) == 1);
     REQUIRE(factorial(5) == 120);
     REQUIRE(factorial(11) == 39916800);
+    REQUIRE(factorial(-1) == -1);
 }
 
 TEST_CASE("describe_is_prime", "[is_prime]") {
     REQUIRE(is_prime(13) == true);
     REQUIRE(is_prime(9) == false);
+    REQUIRE(is_prime(-7) == true);
 }
 
 
 int main(int argc, char* argv[])
 {
-  sum_multiples(1000);
   return Catch::Session().run(argc, argv);
 }
