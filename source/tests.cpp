@@ -40,7 +40,7 @@ int checksum(int a) {
     int quersumme = 0;
 
     if (a < 0) {
-        std::cout << "Eine Quersumme für negative Zahlen ist nich definiert.";
+        std::cout << "Eine Quersumme für negative Zahlen ist nich definiert." << std::endl;
         return -1;
     }
     while (a > 0) {
@@ -55,7 +55,7 @@ int sum_multiples(int a) {
     int sum = 0;
 
     if (a < 1) {
-        std::cout << "Die Obergrenze muss groeßer als 1 sein";
+        std::cout << "Die Obergrenze muss groeßer als 1 sein" << std::endl;
         return -1;
     }
 
@@ -80,7 +80,7 @@ float fract(float a) {
 float cylinder_volume(float r, float h) {
     
     if (r <= 0 || h <= 0) {
-        std::cout << "Radius und Hoehe muessen groeßer als 0 sein!";
+        std::cout << "Radius und Hoehe muessen groeßer als 0 sein!" << std::endl;
         return -1.0f;
     }
     else {
@@ -91,7 +91,7 @@ float cylinder_volume(float r, float h) {
 
 float cylinder_surface(float r, float h) {
     if (r <= 0 || h <= 0) {
-        std::cout << "Radius und Hoehe muessen groeßer als 0 sein!";
+        std::cout << "Radius und Hoehe muessen groeßer als 0 sein!" << std::endl;
         return -1.0f;
     }
     else {
@@ -102,7 +102,7 @@ float cylinder_surface(float r, float h) {
 
 long factorial(int n) {
     if (n < 0) {
-        std::cout << "Fakultaeten für Zahlen kleiner 0 sind nicht definiert.";
+        std::cout << "Fakultaeten für Zahlen kleiner 0 sind nicht definiert." << std::endl;
         return -1;
     }
     if (n == 0 || n == 1) {
