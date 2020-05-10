@@ -130,6 +130,7 @@ TEST_CASE("describe_checksum", "[checksum]") {
     REQUIRE(checksum(121618) == 19);
     REQUIRE(checksum(123) == 6);
     REQUIRE(checksum(0) == 0);
+    REQUIRE(checksum(-24) == -1);
 }
 
 TEST_CASE("describe_gcd", "[gcd]") { 
@@ -143,6 +144,7 @@ TEST_CASE("describe_gcd", "[gcd]") {
 TEST_CASE("describe_sum_multiple", "[sum_multiple]") {
     REQUIRE(sum_multiples(1000) == 234168);
     REQUIRE(sum_multiples(10) == 33);
+    REQUIRE(sum_multiples(-12) == -1);
 }
 
 TEST_CASE("describe_fract", "[fract]") {
@@ -156,12 +158,14 @@ TEST_CASE("describe_cylinder_volume", "[cylinder_volume]") {
     REQUIRE(cylinder_volume(2.0f, 4.0f) == Approx(50.265f));
     REQUIRE(cylinder_volume(0.0f, 10.0f) == Approx(-1.0f));
     REQUIRE(cylinder_volume(12.3f, -3.14f) == Approx(-1.0f));
+    REQUIRE(cylinder_volume(-7.0f, 21.0f) == Approx(-1.0f));
 }
 
 TEST_CASE("describe_cylinder_surface", "[cylinder_surface]") {
     REQUIRE(cylinder_surface(2.0f, 4.0f) == Approx(75.398f));
     REQUIRE(cylinder_surface(6.13f, 0.0f) == Approx(-1.0f));
     REQUIRE(cylinder_surface(-13.4f, 0.7f) == Approx(-1.0f));
+    REQUIRE(cylinder_surface(-7.0f, 21.0f) == Approx(-1.0f));
 }
 
 TEST_CASE("describe_factorial", "[factorial]") {
@@ -180,10 +184,10 @@ TEST_CASE("describe_is_prime", "[is_prime]") {
 
 int main(int argc, char* argv[])
 {
-    std::cout << " Quersumme, negative Zahl: " << checksum(-123) << std::endl;
+    /*std::cout << " Quersumme, negative Zahl: " << checksum(-123) << std::endl;
     std::cout << " Aufsummierung, Obergrenze kleiner als 1: " << sum_multiples(-12) << std::endl;
     std::cout << " Zylinder Volumen, negative Zahl: " << cylinder_volume(-1, 13) << std::endl;
     std::cout << " Zylinder Oberflaeche, negative Zahl: " << cylinder_surface(-1, 13) << std::endl;
-    std::cout << " Fakultaet, negative Zahl: " << factorial(-9) << std::endl;
+    std::cout << " Fakultaet, negative Zahl: " << factorial(-9) << std::endl;*/
     return Catch::Session().run(argc, argv);
 }
