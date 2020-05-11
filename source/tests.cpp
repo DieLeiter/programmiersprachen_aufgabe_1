@@ -184,10 +184,5 @@ TEST_CASE("describe_is_prime", "[is_prime]") {
 
 int main(int argc, char* argv[])
 {
-    /*std::cout << " Quersumme, negative Zahl: " << checksum(-123) << std::endl;
-    std::cout << " Aufsummierung, Obergrenze kleiner als 1: " << sum_multiples(-12) << std::endl;
-    std::cout << " Zylinder Volumen, negative Zahl: " << cylinder_volume(-1, 13) << std::endl;
-    std::cout << " Zylinder Oberflaeche, negative Zahl: " << cylinder_surface(-1, 13) << std::endl;
-    std::cout << " Fakultaet, negative Zahl: " << factorial(-9) << std::endl;*/
     return Catch::Session().run(argc, argv);
 }
